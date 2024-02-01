@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>react  test 6</title>
+</head>
+<body>
+    <pre>
+        1.Write one example of promise.   
+
+        let Promise = new Promise((resolve, reject)=>{  
+            let a = 3;  
+            if(a==3){  
+                resolve('Success');  
+            }  
+            else{  
+                reject('Failed');  
+            }  
+        })  
+        Promise.then(console.log);
+        .catch(console.log)
+
+        -------------------------------------------------------------------------------------------------------------------
+
+        2.How to solve async into sync. 
+
+            =>Promise
+            =>Promise chaining
+            =>Promise all
+            =>Callback
+            =>Callback hell
+            =>async/await
+
+        -------------------------------------------------------------------------------------------------------------------
+        3.Write an example of Async/Await.  
+
+        async function data() {
+            const result1 = await new Promise((resolve) =>
+              setTimeout(() => resolve("1")),
+            );
+            const result2 = await new Promise((resolve) =>
+              setTimeout(() => resolve("2")),
+            );
+          }
+          data();
+
+        -------------------------------------------------------------------------------------------------------------------
+
+        4.Difference between context and redux.
+
+        ---------------------------Context----------------------------------------
+
+        =>It is used to share data.
+        =>Changes are made with the Context value.
+        =>We can change the state in it.
+        =>It re-renders all components whenever there is any update in the provider’s value prop.
+        =>It is better to use with small applications.
+        =>It is easy to understand and requires less code.
+
+        -------------------------Redux---------------------------------------------
+
+        =>Redux is a state management library.
+        =>It is used to manage data and state.
+        =>Changes are made with pure functions i.e. reducers.
+        =>The state is read-only. We cannot change them directly.
+        =>It only re-render the updated components.
+        =>It is perfect for larger applications. 
+        =>It is quite complex to understand.
+        
+        -------------------------------------------------------------------------------------------------------------------
+
+        5.What is component. Write its types.
+
+        =>Components are independent and reusable bits of code. They serve the same purpose as JavaScript functions, but work in isolation and return HTML.
+        =>Components come in two types, Class components and Function components.
+
+        -------------------------------------------------------------------------------------------------------------------
+
+        6.Explain the difference between functional component and class component.
+
+        -----------------------Functional component-------------------------------
+
+        =>A functional component is just a plain JavaScript pure function that accepts props as an argument and returns a React element(JSX).
+        =>There is no render method used in functional components.
+        =>Functional components run from top to bottom and once the function is returned it can’t be kept alive.
+        =>Also known as Stateless components as they simply accept data and display them in some form, they are mainly responsible for rendering UI.
+        =>React lifecycle methods (for example, componentDidMount) cannot be used in functional components.
+        =>Hooks can be easily used in functional components to make them Stateful.
+
+        Example:
+        
+        const [name,SetName]= React.useState(' ')
+        =>Constructors are not used.
+
+        -----------------------Class component---------------------------------------
+
+        =>A class component requires you to extend from React. Component and create a render function that returns a React element.
+        =>It must have the render() method returning JSX (which is syntactically similar to HTML)
+        =>The class component is instantiated and different life cycle method is kept alive and is run and invoked depending on the phase of the class component.
+        =>Also known as Stateful components because they implement logic and state.
+        =>React lifecycle methods can be used inside class components (for example, componentDidMount).
+        =>It requires different syntax inside a class component to implement hooks.
+
+        Example:
+        
+        constructor(props) {
+           super(props);
+           this.state = {name: ' '}
+        }
+        =>Constructor is used as it needs to store state. 
+
+        -------------------------------------------------------------------------------------------------------------------
+
+        7.Write Redux Flow.    
+
+        store.js---------------
+
+        import {configureStore} from "@reduxjs/toolkit"
+        import datas form "./slice.js"
+
+        export const store=configureStore({
+            reducer:{
+                data:datas
+            }
+        })
+        slice.js------------------
+
+        import {createSlice} from "@reduxjs/toolkit"
+
+        export const Slice=createSlice({
+            name:"slice",
+            initialstate:{name:"abi"},
+            reducers:{
+                update:(state,action)=>{
+                    state.name=action.payload
+                }
+            }
+        })
+
+        export default Slice.reducer;
+        export const {update}=Slice.actions;
+
+        Home.js----------------------
+
+        import React from "react";
+        import {useSelector,useDispatch} from "react-redux";
+        import {update} from "./Slice";
+
+        export const Home=()=>{
+            const state=useSelector((abi)=>abi.data);
+            const dispatch=useDispatch();
+
+            const change=()=>{
+                dispatch(update("akal"))
+            }
+            return(
+                < div>
+                    < h1>{state.name}< /h1>
+                    < button onClick={change}>change name< /button>
+                < /div>
+            )
+        }
+
+
+        -------------------------------------------------------------------------------------------------------------------
+
+        8.What is key in a react?  
+
+        =>A “key” is a special string attribute you need to include when creating lists of elements in React.
+        =>Keys are used in React to identify which items in the list are changed, updated, or deleted.
+        => Keys are used to give an identity to the elements in the lists.
+
+
+    </pre>
+</body>
+</html>
